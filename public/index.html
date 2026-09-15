@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>دردشة</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Zain:wght@400;700;900&family=Rubik:wght@400;500;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- شاشة الدخول -->
+  <main id="gate" class="gate">
+    <div class="gate__card">
+      <h1 class="gate__logo">دردشة</h1>
+      <p class="gate__tag">رسائل فورية بين أي جهازين على نفس الشبكة</p>
+
+      <div class="tabs" role="tablist">
+        <button class="tab is-active" data-mode="login" role="tab">دخول</button>
+        <button class="tab" data-mode="register" role="tab">حساب جديد</button>
+      </div>
+
+      <form id="authForm" class="form" autocomplete="on">
+        <label class="field">
+          <span>اسم المستخدم</span>
+          <input name="username" dir="ltr" placeholder="ali_99" required />
+        </label>
+
+        <label class="field" id="nameField" hidden>
+          <span>الاسم الظاهر</span>
+          <input name="displayName" placeholder="علي محمد" />
+        </label>
+
+        <label class="field">
+          <span>كلمة السر</span>
+          <input name="password" type="password" placeholder="••••••" required />
+        </label>
+
+        <p id="authError" class="error" hidden></p>
+        <button class="btn btn--primary" type="submit">دخول</button>
+      </form>
+    </div>
+  </main>
+
+  <!-- التطبيق -->
+  <div id="app" class="app" hidden>
+    <aside class="sidebar" id="sidebar">
+      <header class="sidebar__head">
+        <div class="avatar avatar--me" id="myAvatar"></div>
+        <div class="sidebar__me">
+          <strong id="myName"></strong>
+          <span id="myHandle" dir="ltr"></span>
+        </div>
+        <button class="icon-btn" id="logout" title="خروج">خروج</button>
+      </header>
+
+      <div class="search">
+        <input id="search" placeholder="ابحث عن شخص" />
+      </div>
+
+      <ul class="contacts" id="contacts"></ul>
+    </aside>
+
+    <section class="chat" id="chat">
+      <div class="empty" id="emptyState">
+        <h2>اختر شخص وابدأ الكلام</h2>
+        <p>كل الحسابات المسجلة تظهر بالقائمة. شارك رابط السيرفر مع صديقك حتى يسوي حساب.</p>
+      </div>
+
+      <div class="chat__inner" id="chatInner" hidden>
+        <header class="chat__head">
+          <button class="icon-btn back" id="back">رجوع</button>
+          <div class="avatar" id="peerAvatar"></div>
+          <div class="chat__peer">
+            <strong id="peerName"></strong>
+            <span id="peerStatus"></span>
+          </div>
+          <button class="icon-btn call-btn" id="callBtn" title="مكالمة صوتية">📞</button>
+        </header>
+
+        <div class="messages" id="messages"></div>
+
+        <form class="composer" id="composer">
+          <input id="input" placeholder="اكتب رسالة" autocomplete="off" />
+          <button class="btn btn--send" type="submit">إرسال</button>
+        </form>
+      </div>
+    </section>
+  </div>
+
+  <!-- طبقة المكالمة -->
+  <div class="call-layer" id="callLayer" hidden>
+    <div class="call-card">
+      <div class="avatar avatar--big" id="callAvatar"></div>
+      <strong id="callName"></strong>
+      <p id="callStatus">يتصل…</p>
+
+      <div class="call-actions" id="callActionsIncoming" hidden>
+        <button class="call-btn call-btn--reject" id="rejectCall">رفض</button>
+        <button class="call-btn call-btn--accept" id="acceptCall">قبول</button>
+      </div>
+
+      <div class="call-actions" id="callActionsActive" hidden>
+        <button class="call-btn call-btn--mute" id="muteCall">كتم</button>
+        <button class="call-btn call-btn--reject" id="endCall">إنهاء</button>
+      </div>
+    </div>
+  </div>
+
+  <audio id="remoteAudio" autoplay playsinline></audio>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
