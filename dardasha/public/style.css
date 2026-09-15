@@ -1,0 +1,477 @@
+:root {
+  --ink: #101d24;
+  --ink-soft: #5c7280;
+  --shell: #15242c;
+  --shell-2: #1d323c;
+  --line: #dfe6e9;
+  --paper: #eef2f1;
+  --card: #ffffff;
+  --accent: #2f7a68;
+  --accent-ink: #ffffff;
+  --mine: #cfe9df;
+  --ring: #2f7a6855;
+  --danger: #a93636;
+  --radius: 14px;
+  --sans: "Rubik", "Zain", system-ui, sans-serif;
+  --display: "Zain", "Rubik", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--paper);
+  -webkit-font-smoothing: antialiased;
+}
+
+button, input { font: inherit; color: inherit; }
+
+:focus-visible {
+  outline: 3px solid var(--ring);
+  outline-offset: 2px;
+}
+
+/* ------------------------------- شاشة الدخول ------------------------------- */
+
+.gate {
+  min-height: 100%;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background:
+    radial-gradient(1200px 600px at 80% -10%, #21414a 0%, transparent 60%),
+    var(--shell);
+}
+
+.gate__card {
+  width: min(420px, 100%);
+  background: var(--card);
+  border-radius: 20px;
+  padding: 32px 28px;
+  box-shadow: 0 24px 60px rgba(8, 20, 26, .35);
+}
+
+.gate__logo {
+  font-family: var(--display);
+  font-size: 44px;
+  font-weight: 900;
+  margin: 0;
+  letter-spacing: -.5px;
+}
+
+.gate__tag {
+  margin: 4px 0 24px;
+  color: var(--ink-soft);
+  line-height: 1.6;
+}
+
+.tabs {
+  display: flex;
+  gap: 4px;
+  background: var(--paper);
+  padding: 4px;
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.tab {
+  flex: 1;
+  border: 0;
+  background: transparent;
+  padding: 10px;
+  border-radius: 9px;
+  cursor: pointer;
+  color: var(--ink-soft);
+}
+
+.tab.is-active {
+  background: var(--card);
+  color: var(--ink);
+  font-weight: 700;
+  box-shadow: 0 1px 3px rgba(16, 29, 36, .12);
+}
+
+.form { display: grid; gap: 14px; }
+
+.field { display: grid; gap: 6px; }
+
+.field > span {
+  font-size: 14px;
+  color: var(--ink-soft);
+}
+
+.field input {
+  border: 1px solid var(--line);
+  border-radius: 11px;
+  padding: 12px 14px;
+  background: #fbfcfc;
+}
+
+.field input:focus {
+  border-color: var(--accent);
+  outline: none;
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+.btn {
+  border: 0;
+  border-radius: 11px;
+  padding: 13px 18px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.btn--primary:hover { background: #266657; }
+
+.error {
+  margin: 0;
+  color: var(--danger);
+  font-size: 14px;
+}
+
+/* --------------------------------- التطبيق -------------------------------- */
+
+.app {
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) 1fr;
+  background: var(--paper);
+}
+
+.sidebar {
+  background: var(--card);
+  border-inline-end: 1px solid var(--line);
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.sidebar__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 14px 16px;
+  background: var(--shell);
+  color: #eaf2f0;
+}
+
+.sidebar__me {
+  display: grid;
+  line-height: 1.3;
+  min-width: 0;
+  flex: 1;
+}
+
+.sidebar__me span {
+  font-size: 13px;
+  color: #9fb6b2;
+}
+
+.icon-btn {
+  border: 1px solid #ffffff2e;
+  background: transparent;
+  color: inherit;
+  border-radius: 9px;
+  padding: 7px 12px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.icon-btn:hover { background: #ffffff14; }
+
+.search { padding: 12px 14px; border-bottom: 1px solid var(--line); }
+
+.search input {
+  width: 100%;
+  border: 1px solid var(--line);
+  background: var(--paper);
+  border-radius: 20px;
+  padding: 10px 16px;
+}
+
+.search input:focus { outline: none; border-color: var(--accent); }
+
+.contacts {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  flex: 1;
+}
+
+.contact {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px 14px;
+  cursor: pointer;
+  border-bottom: 1px solid #f0f3f3;
+}
+
+.contact:hover { background: #f6f8f8; }
+.contact.is-active { background: #e8f1ee; }
+
+.contact__text { flex: 1; min-width: 0; }
+
+.contact__row {
+  display: flex;
+  justify-content: space-between;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.contact__name { font-weight: 700; }
+
+.contact__time, .contact__last {
+  font-size: 13px;
+  color: var(--ink-soft);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.badge {
+  background: var(--accent);
+  color: #fff;
+  border-radius: 999px;
+  min-width: 21px;
+  height: 21px;
+  display: grid;
+  place-items: center;
+  font-size: 12px;
+  padding: 0 6px;
+}
+
+.avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: var(--shell-2);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font-family: var(--display);
+  font-size: 20px;
+  font-weight: 700;
+  flex: none;
+  position: relative;
+}
+
+.avatar--me { width: 42px; height: 42px; font-size: 18px; }
+
+.avatar[data-online="1"]::after {
+  content: "";
+  position: absolute;
+  inset-block-end: 1px;
+  inset-inline-end: 1px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #47b37e;
+  border: 2px solid var(--card);
+}
+
+/* ------------------------------- منطقة الدردشة ------------------------------ */
+
+.chat { min-height: 0; display: flex; }
+
+.empty {
+  margin: auto;
+  text-align: center;
+  max-width: 380px;
+  padding: 24px;
+  color: var(--ink-soft);
+}
+
+.empty h2 {
+  font-family: var(--display);
+  font-size: 30px;
+  color: var(--ink);
+  margin-bottom: 8px;
+}
+
+.chat__inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.chat__head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 16px;
+  background: var(--card);
+  border-bottom: 1px solid var(--line);
+}
+
+.chat__peer { display: grid; line-height: 1.35; }
+.chat__peer span { font-size: 13px; color: var(--ink-soft); }
+
+.back { display: none; border-color: var(--line); color: var(--ink); }
+
+.messages {
+  flex: 1;
+  overflow-y: auto;
+  padding: 20px 18px 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  background-color: var(--paper);
+  background-image:
+    radial-gradient(circle at 1px 1px, #d7dfdd 1px, transparent 0);
+  background-size: 22px 22px;
+}
+
+.bubble {
+  max-width: min(72%, 560px);
+  background: var(--card);
+  padding: 8px 12px 6px;
+  border-radius: var(--radius);
+  border-start-start-radius: 4px;
+  align-self: flex-start;
+  box-shadow: 0 1px 1px rgba(16, 29, 36, .08);
+  word-wrap: break-word;
+}
+
+.bubble--mine {
+  background: var(--mine);
+  align-self: flex-end;
+  border-start-start-radius: var(--radius);
+  border-start-end-radius: 4px;
+}
+
+.bubble__body { white-space: pre-wrap; line-height: 1.55; }
+
+.bubble__meta {
+  display: flex;
+  gap: 5px;
+  justify-content: flex-end;
+  align-items: center;
+  font-size: 11px;
+  color: var(--ink-soft);
+  margin-top: 2px;
+}
+
+.ticks { letter-spacing: -3px; }
+.ticks.is-read { color: #2f7a68; font-weight: 700; }
+
+.day {
+  align-self: center;
+  background: #ffffffcc;
+  color: var(--ink-soft);
+  font-size: 12px;
+  padding: 4px 12px;
+  border-radius: 999px;
+  margin: 10px 0 6px;
+}
+
+.composer {
+  display: flex;
+  gap: 10px;
+  padding: 12px 16px;
+  background: var(--card);
+  border-top: 1px solid var(--line);
+}
+
+.composer input {
+  flex: 1;
+  border: 1px solid var(--line);
+  border-radius: 22px;
+  padding: 12px 18px;
+  background: var(--paper);
+}
+
+.composer input:focus { outline: none; border-color: var(--accent); }
+
+.btn--send { background: var(--accent); color: #fff; padding-inline: 22px; border-radius: 22px; }
+
+/* -------------------------------- المكالمة -------------------------------- */
+
+.call-btn {
+  margin-inline-start: auto;
+  font-size: 18px;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border-color: var(--line);
+  background: transparent;
+}
+
+.call-btn:hover { background: #f0f3f3; }
+
+.call-layer {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(180deg, #0e1b21, #16292f);
+  display: grid;
+  place-items: center;
+  z-index: 50;
+}
+
+.call-card {
+  text-align: center;
+  color: #eef4f2;
+  display: grid;
+  justify-items: center;
+  gap: 6px;
+}
+
+.avatar--big {
+  width: 108px;
+  height: 108px;
+  font-size: 42px;
+  margin-bottom: 14px;
+  background: var(--shell-2);
+}
+
+.call-card strong { font-size: 22px; }
+
+#callStatus { color: #a9c0bc; margin: 0 0 30px; }
+
+.call-actions { display: flex; gap: 22px; }
+
+.call-actions .call-btn {
+  width: 60px;
+  height: 60px;
+  font-size: 15px;
+  border: 0;
+  color: #fff;
+  font-weight: 700;
+  margin: 0;
+}
+
+.call-btn--accept { background: #2f7a68; }
+.call-btn--reject { background: #a93636; }
+.call-btn--mute { background: #375059; }
+.call-btn--mute.is-muted { background: #7a9086; color: #0e1b21; }
+
+/* --------------------------------- الموبايل -------------------------------- */
+
+@media (max-width: 760px) {
+  .app { grid-template-columns: 1fr; }
+  .sidebar { grid-column: 1; }
+  .chat { display: none; }
+  .app[data-view="chat"] .sidebar { display: none; }
+  .app[data-view="chat"] .chat { display: flex; }
+  .back { display: block; }
+  .bubble { max-width: 85%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * { transition: none !important; animation: none !important; }
+}
